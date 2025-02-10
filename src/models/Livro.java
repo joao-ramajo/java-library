@@ -1,3 +1,5 @@
+package models;
+
 public class Livro {
 
     private String titulo;
@@ -33,7 +35,7 @@ public class Livro {
     public String getEditora(){ return this.editora;}
 
     public void getInfo(){
-        System.out.println("Titulo : " + getTitulo() + "\nPaginas: " + getPaginas + "\nEditora: " + getEditora + "\nAutor: " + getAutor());
+        System.out.println("Titulo : " + getTitulo() + "\nPaginas: " + getPaginas() + "\nEditora: " + getEditora() + "\nAutor: " + getAutor());
     }
 
 
