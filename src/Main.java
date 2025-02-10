@@ -14,9 +14,8 @@ public class Main {
         Livro livro8 = new Livro("The Pragmatic Programmer", "Programação", "Andrew Hunt, David Thomas", "Addison-Wesley", 352);
         Livro livro9 = new Livro("C# 7.0 - O Guia Completo", "Tecnologia", "Herbert Schildt", "McGraw-Hill", 978);
         Livro livro10 = new Livro("Design de Interfaces", "Design", "Jenifer Tidwell", "Bookman", 480);
-
         Livro python = new Livro("Automate the Boring Stuff with Python", "Tecnologia", "Al Sweigart", "Americana", 450);
-        //Livro php = new Livro("PHP & MySQL: Novice to Ninja", "Tecnologia", "Tom Butler", "Britânica", 500);
+
         Livro[] livros = {python, livro1, livro2, livro3, livro4, livro5,livro6,livro7,livro8,livro9,livro10};
 
 

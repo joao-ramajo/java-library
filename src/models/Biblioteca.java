@@ -6,7 +6,8 @@ import java.util.Set;
 
 public class Biblioteca {
     private String nome;
-    private ArrayList<String> categorias = new ArrayList<>();
+    //private ArrayList<String> categorias = new ArrayList<>();
+    private Set<String> categorias = new HashSet<>();
     private Livro[] livros;
     private int quantidade_livros;
 
@@ -34,7 +35,7 @@ public class Biblioteca {
 
     }
 
-    public ArrayList<String> getAllCategorias(){
+    public Set<String> getAllCategorias(){
         return this.categorias;
     }
 

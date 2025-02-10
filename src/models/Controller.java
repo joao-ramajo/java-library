@@ -56,11 +56,8 @@ public class Controller {
     public void menuCategorias(){
         br();
         System.out.println("----- Categorias -----");
-        ArrayList<String> categorias = this.biblioteca.getAllCategorias();
 
-        Set<String> categorias_unicas = new HashSet<>(categorias);
-
-        ArrayList<String> categorias_final = new ArrayList<>(categorias_unicas);
+        Set<String> categorias_unicas = this.biblioteca.getAllCategorias();
 
         int qtd_categorias = 0;
 
@@ -73,7 +70,9 @@ public class Controller {
         int esc = scanner.nextInt();
 
         br();
-        this.biblioteca.getByCategoria(categorias_final.get(esc-1));
+
+        ArrayList<String> cat = new ArrayList<>(categorias_unicas);
+        this.biblioteca.getByCategoria(cat.get(esc-1));
 
         System.out.print("Digite ok para continuar: ");
         scanner.next();
