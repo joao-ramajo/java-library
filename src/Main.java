@@ -4,24 +4,20 @@ import models.Controller;
 
 public class Main {
     public static void main(String[] args) {
-        // Livro machado = new Livro("Memorias postumas", "Machado de Assis", "Brasileira", 200);
-        // Livro marcel = new Livro("Laravel off PHP", "Marcel Gonçalves dos Santos", "Brasileira", 400);
-        // Livro harry = new Livro("Harry Potter e a Pedra Filosofal", "J.K. Rowling", "Britânica", 350);
-        // Livro clean = new Livro("Clean Code", "Robert C. Martin", "Americana", 500);
-        // Livro javascript = new Livro("JavaScript: The Good Parts", "Douglas Crockford", "Americana", 250);
-        // Livro react = new Livro("Learning React", "Alex Banks", "Americana", 350);
-        // Livro nodejs = new Livro("Node.js Design Patterns", "Mario Casciaro", "Italiana", 400);
-        // Livro war_and_peace = new Livro("War and Peace", "Leo Tolstoy", "Russiana", 1200);
-        // Livro game_of_thrones = new Livro("Game of Thrones", "George R. R. Martin", "Americana", 800);
-        // Livro book_thief = new Livro("The Book Thief", "Markus Zusak", "Australiana", 600);
-        // Livro algorithm = new Livro("Introduction to Algorithms", "Thomas H. Cormen", "Americana", 1200);
-        // Livro deep_learning = new Livro("Deep Learning", "Ian Goodfellow", "Canadense", 700);
-        // Livro python = new Livro("Automate the Boring Stuff with Python", "Al Sweigart", "Americana", 450);
-        // Livro html_css = new Livro("HTML and CSS: Design and Build Websites", "Jon Duckett", "Britânica", 350);
-        // Livro php = new Livro("PHP & MySQL: Novice to Ninja", "Tom Butler", "Britânica", 500);
+        Livro livro1 = new Livro("PHP & MySQL: Novice to Ninja", "Tecnologia", "Tom Butler", "Britânica", 500);
+        Livro livro2 = new Livro("Clean Code", "Programação", "Robert C. Martin", "Alta Books", 460);
+        Livro livro3 = new Livro("Java: Como Programar", "Tecnologia", "Deitel & Deitel", "Pearson", 1200);
+        Livro livro4 = new Livro("JavaScript: O Guia Definitivo", "Tecnologia", "David Flanagan", "O'Reilly Media", 704);
+        Livro livro5 = new Livro("Design Patterns: Elementos de Software Orientado a Objetos Reusáveis", "Design", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides", "Addison-Wesley", 395);
+        Livro livro6 = new Livro("Aprenda PHP", "Tecnologia", "Diego S. G.", "Novatec", 400);
+        Livro livro7 = new Livro("Introdução ao Desenvolvimento Web com HTML5, CSS3 e JavaScript", "Desenvolvimento Web", "Jon Duckett", "Bookman", 464);
+        Livro livro8 = new Livro("The Pragmatic Programmer", "Programação", "Andrew Hunt, David Thomas", "Addison-Wesley", 352);
+        Livro livro9 = new Livro("C# 7.0 - O Guia Completo", "Tecnologia", "Herbert Schildt", "McGraw-Hill", 978);
+        Livro livro10 = new Livro("Design de Interfaces", "Design", "Jenifer Tidwell", "Bookman", 480);
+
         Livro python = new Livro("Automate the Boring Stuff with Python", "Tecnologia", "Al Sweigart", "Americana", 450);
         Livro php = new Livro("PHP & MySQL: Novice to Ninja", "Tecnologia", "Tom Butler", "Britânica", 500);
-        Livro[] livros = {python, php};
+        Livro[] livros = {python, php, livro1, livro2, livro3, livro4, livro5,livro6,livro7,livro8,livro9,livro10};
 
 
         Biblioteca acervo = new Biblioteca("Pública" , livros);
@@ -29,6 +25,7 @@ public class Main {
         Controller controller = new Controller(acervo);
 
         controller.index();
+
 
     }
 }

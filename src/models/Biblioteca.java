@@ -1,6 +1,8 @@
 package models;
 import models.Livro;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Biblioteca {
     private String nome;
@@ -32,10 +34,20 @@ public class Biblioteca {
 
     }
 
-    public ArrayList getAllCategorias(){
+    public ArrayList<String> getAllCategorias(){
         return this.categorias;
     }
 
+    public Set<String> getAllAutores(){
+        Set<String> autores = new HashSet<>();
+
+        for(Livro livro : this.livros) {
+            autores.add(livro.getAutor());
+        }
+
+
+        return autores;
+    }
   
 
 
@@ -50,10 +62,20 @@ public class Biblioteca {
        }
     }
 
+    public void getByAutor(String autor) {
+        for(Livro livro : this.livros) {
+            if(livro.getAutor().equals(autor)) {
+                info(livro);
+            }
+        }
+    }
+
   public void getLivros() {
         for (Livro livro : this.livros) {
             info(livro);
         }
+
+        System.out.println("Livros cadastrados: " + this.getQtdLivros());
     }
     
 
