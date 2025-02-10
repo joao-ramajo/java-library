@@ -33,26 +33,29 @@ public class Controller {
             System.out.println("");
         }
         System.out.println(separador + this.biblioteca.getNome() + separador);
-       
-        System.out.println("Bem vindo a biblioteca "+this.biblioteca.getNome()+" Escolha a opção que deseja");
-        System.out.println("\n[1] Informações sobre a biblioteca \n[2] Livros cadastrados");
+
+        while(this.getStatus()) {
+            System.out.println("Bem vindo a biblioteca "+this.biblioteca.getNome()+" Escolha a opção que deseja");
+            System.out.println("\n[1] Informações sobre a biblioteca \n[2] Livros cadastrados");
 
 
-        System.out.print("Sua opção: ");
-        int esc = scanner.nextInt();
+            System.out.print("Sua opção: ");
+            int esc = scanner.nextInt();
 
 
-        switch(esc) {
-            case 1:
-                this.getBiblioteca();
-                break;
-            case 2:
-                this.biblioteca.getLivros();
-                break;
+            switch(esc) {
+                case 1:
+                    this.getBiblioteca();
+                    break;
+                case 2:
+                    this.biblioteca.getLivros();
+                    break;
+            }
+            for(int i = 0; i < 5; i++) {
+                System.out.println("");
+            }
         }
-        for(int i = 0; i < 5; i++) {
-            System.out.println("");
-        }
+        
 
     }
 
