@@ -31,12 +31,12 @@ public class Controller {
     public void index(){
          for(int i = 0; i < 5; i++) {
             System.out.println("");
-        }
+            }
         System.out.println(separador + this.biblioteca.getNome() + separador);
-
-        while(this.getStatus()) {
-            System.out.println("Bem vindo a biblioteca "+this.biblioteca.getNome()+" Escolha a opção que deseja");
-            System.out.println("\n[1] Informações sobre a biblioteca \n[2] Livros cadastrados");
+        System.out.println("Bem vindo a biblioteca "+this.biblioteca.getNome()+" Escolha a opção que deseja");
+        while(status) {
+            
+            System.out.println("\n[1] Informações sobre a biblioteca \n[2] Livros cadastrados \n[3] Sair");
 
 
             System.out.print("Sua opção: ");
@@ -45,11 +45,26 @@ public class Controller {
 
             switch(esc) {
                 case 1:
+                    for(int i = 0; i < 5; i++) {
+                    System.out.println("");
+                    }
                     this.getBiblioteca();
+                    for(int i = 0; i < 5; i++) {
+                    System.out.println("");
+                    }
                     break;
                 case 2:
+                    for(int i = 0; i < 5; i++) {
+                    System.out.println("");
+                    }
                     this.biblioteca.getLivros();
+                    for(int i = 0; i < 5; i++) {
+                    System.out.println("");
+                    }
                     break;
+                case 3:
+                    this.setStatus(false);
+
             }
             for(int i = 0; i < 5; i++) {
                 System.out.println("");
