@@ -1,5 +1,6 @@
 import models.Biblioteca;
 import models.Livro;
+import models.Controller;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,8 +26,9 @@ public class Main {
 
         Biblioteca acervo = new Biblioteca("Pública" , livros);
 
-        // acervo.getLivros();
-        acervo.getByCategoria("Tecnologiaa");
-        // acervo.getAllCategorias();
+        Controller controller = new Controller(acervo);
+
+        controller.index();
+
     }
 }
