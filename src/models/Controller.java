@@ -45,6 +45,9 @@ public class Controller {
         ArrayList<String> autores_final = new ArrayList<>(autores);
         this.biblioteca.getByAutor(autores_final.get(esc-1));
 
+        System.out.print("Digite ok para continuar: ");
+        scanner.next();
+
 
 
 
@@ -60,6 +63,7 @@ public class Controller {
         ArrayList<String> categorias_final = new ArrayList<>(categorias_unicas);
 
         int qtd_categorias = 0;
+
         for(String categoria : categorias_unicas) {
             qtd_categorias++;
             System.out.println("["+qtd_categorias+"]"+categoria);
@@ -68,9 +72,11 @@ public class Controller {
         System.out.print("Procurar na categoria: ");
         int esc = scanner.nextInt();
 
+        br();
         this.biblioteca.getByCategoria(categorias_final.get(esc-1));
 
-        this.index();
+        System.out.print("Digite ok para continuar: ");
+        scanner.next();
     }
 
     public void br(){

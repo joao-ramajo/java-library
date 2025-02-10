@@ -16,8 +16,8 @@ public class Main {
         Livro livro10 = new Livro("Design de Interfaces", "Design", "Jenifer Tidwell", "Bookman", 480);
 
         Livro python = new Livro("Automate the Boring Stuff with Python", "Tecnologia", "Al Sweigart", "Americana", 450);
-        Livro php = new Livro("PHP & MySQL: Novice to Ninja", "Tecnologia", "Tom Butler", "Britânica", 500);
-        Livro[] livros = {python, php, livro1, livro2, livro3, livro4, livro5,livro6,livro7,livro8,livro9,livro10};
+        //Livro php = new Livro("PHP & MySQL: Novice to Ninja", "Tecnologia", "Tom Butler", "Britânica", 500);
+        Livro[] livros = {python, livro1, livro2, livro3, livro4, livro5,livro6,livro7,livro8,livro9,livro10};
 
 
         Biblioteca acervo = new Biblioteca("Pública" , livros);
