@@ -102,6 +102,10 @@ public class Controller {
         }
         System.out.print("Selecione uma categoria: ");
         int categoria = scanner.nextInt();
+        while(categoria < 0 || categoria >= 6){
+            System.out.print("Selecione uma opção válida: ");
+            categoria = scanner.nextInt();
+        }
         ArrayList<String> array_categorias = new ArrayList<>(this.getBiblioteca().getCategorias());
 
         br();
@@ -123,6 +127,10 @@ public class Controller {
 
         System.out.println("Escolha o autor: ");
         int autor = scanner.nextInt();
+        while(autor < 0 || autor >= 10){
+            System.out.print("Escolha uma opção válida: ");
+            autor = scanner.nextInt();
+        }
 
         ArrayList<String> autores = new ArrayList<>(this.getBiblioteca().getAllAutores());
         this.getBiblioteca().getByAutor(autores.get(autor));
