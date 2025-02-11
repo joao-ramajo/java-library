@@ -26,18 +26,6 @@ Projeto em **Java** para a criação de um sistema de gerenciamento de bibliotec
 
 Este é um sistema básico para gerenciar livros em uma biblioteca. Ele permite visualizar informações sobre os livros cadastrados, filtrá-los por categoria ou autor e exibir estatísticas da biblioteca.
 
-## ▶️ Como Rodar
-
-Este projeto inclui um executável em Java para você poder testar.
-
-Certifique-se de ter o Java Runtime Environment (JRE) instalado para executar o .jar.
-
-1. Acesse a pasta `artifacts` dentro de `src/out/artifacts`.
-2. Abra o terminal dentro dela.
-3. Execute o seguinte comando para iniciar o projeto:
-   ```sh
-   java -jar bookshelf_with_java.jar
-   ```
 
 ## 🛠️ Como usar para alterações
 
