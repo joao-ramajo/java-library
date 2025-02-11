@@ -49,10 +49,7 @@ public class Biblioteca {
         return this.quantidade_livros;
     }
 
-    public void getInfo() {
-        System.out.println("Editora: " + this.getNome());
-        System.out.println("Quantidade de livros cadastrados: " + this.getQuantidadeLivros());
-    }
+
 
 
 
@@ -99,6 +96,18 @@ public class Biblioteca {
         System.out.println("-------------------------------");
     }
 
+    public void getInfo() {
+        System.out.println("------------- "+this.getNome()+" -------------");
+        System.out.println("Quantidade de livros cadastrados: " + this.getQuantidadeLivros());
+        System.out.println("Autores cadastrados: " + this.getAllAutores());
+    }
+
+    public void menuBiblioteca() {
+        System.out.println("------------- "+this.getNome()+" -------------");
+        System.out.println("Livros Cadastrados: " + this.getQuantidadeLivros());
+        System.out.println("Autores Cadastrados: " + this.getAllAutores().size());
+        System.out.println("Categorias: " + this.getCategorias());
+    }
 
 
 

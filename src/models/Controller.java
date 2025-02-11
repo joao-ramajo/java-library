@@ -49,33 +49,45 @@ public class Controller {
 
             System.out.print("Escolha uma opção: ");
             int esc = scanner.nextInt();
+
+            while(esc < 0 || esc >= 5){
+                System.out.print("Escolha uma opção válida: ");
+                esc = scanner.nextInt();
+            }
+
             br();
             switch(esc) {
                 case 0:
                     this.setStatus(false);
+                    System.out.println("Sistema desenvolvido por LacamJC");
+                    System.out.println("Documentação: https://github.com/LacamJC/Bookshelf_with_java");
                     break;
                 case 1:
-                    this.getBiblioteca().getInfo();
+                    this.getBiblioteca().menuBiblioteca();
                     fim();
+                    br();
                     break;
 
                 case 2:
                     this.getBiblioteca().getAllLivros();
                     fim();
+                    br();
                     break;
 
                 case 3:
                     this.menuCategoria();
                     fim();
+                    br();
                     break;
 
                 case 4:
                     this.menuAutor();
                     fim();
+                    br();
                     break;
 
             }
-            br();
+
         }
     }
 
