@@ -29,6 +29,7 @@ gradle-app.setting
 *.ipr
 *.iws
 out/
+META-INF/
 
 # Arquivos do Eclipse
 .project
