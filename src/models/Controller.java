@@ -101,6 +101,7 @@ public class Controller {
 
                 case 6:
                     this.getJsonAllLivros();
+                    System.out.println("O arquivo 'livros.json' sera gerado ao finalizar esta aplicação.");
                     fim();
                     br();
                     break;
