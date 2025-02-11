@@ -3,6 +3,11 @@ import src.models.Biblioteca;
 import src.models.Livro;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.Gson;
+import java.io.FileWriter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,13 +51,13 @@ public class Controller {
         while(status) {
             System.out.println(separador+this.biblioteca.getNome()+separador);
 
-            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro");
+            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros");
 
             System.out.print("Escolha uma opção: ");
             int esc = scanner.nextInt();
 
 
-            while(esc < 0 || esc >= 6){
+            while(esc < 0 || esc >= 7){
                 System.out.print("Escolha uma opção válida: ");
                 esc = scanner.nextInt();
             }
@@ -90,6 +95,12 @@ public class Controller {
 
                 case 5:
                     this.menuAdicionarLivro();
+                    fim();
+                    br();
+                    break;
+
+                case 6:
+                    this.getJsonAllLivros();
                     fim();
                     br();
                     break;
@@ -214,6 +225,24 @@ public class Controller {
                 return;
             default:
                 return;
+        }
+    }
+
+    public void getJsonAllLivros() {
+        List<Livro> livros = new ArrayList<>();
+
+        for(Livro livro : this.getBiblioteca().getLivros()) {
+            livros.add(livro);
+        }
+
+        Gson gson = new Gson();
+
+        try{
+            FileWriter writer = new FileWriter("livrosAll.json");
+            gson.toJson(livros, writer);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
