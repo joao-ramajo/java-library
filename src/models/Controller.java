@@ -1,6 +1,9 @@
 package src.models;
 import src.models.Biblioteca;
 import src.models.Livro;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -245,5 +248,20 @@ public class Controller {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void injectData(){
+        Gson gson = new Gson();
+        try{
+            FileReader reader = new FileReader("src/models/data.json");
+            Livro[] livros_json = gson.fromJson(reader, Livro[].class);
+
+            for(Livro livro : livros_json) {
+                this.getBiblioteca().setLivros(livro);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
