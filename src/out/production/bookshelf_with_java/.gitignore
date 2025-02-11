@@ -28,7 +28,7 @@ gradle-app.setting
 *.iml
 *.ipr
 *.iws
-out/production
+out/
 
 # Arquivos do Eclipse
 .project
