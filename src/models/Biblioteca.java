@@ -26,9 +26,11 @@ public class Biblioteca {
         this.categorias.add(livro.getCategoria());
     }
 
-    public void addLivro(Livro livro) {
+    public void addLivro(Livro livro, String nome_biblioteca) {
         this.setLivros(livro);
         this.setCategorias(livro);
+
+        System.out.println("O livro "+livro.getTitulo()+" foi adicionando com sucesso na biblioteca "+nome_biblioteca);
     }
 
     public String getNome(){

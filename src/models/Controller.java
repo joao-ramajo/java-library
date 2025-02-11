@@ -220,7 +220,7 @@ public class Controller {
 
         switch(input) {
             case 0:
-                this.getBiblioteca().addLivro(novo_livro);
+                this.getBiblioteca().addLivro(novo_livro, this.getBiblioteca().getNome());
                 return;
             case 1:
                 return;
