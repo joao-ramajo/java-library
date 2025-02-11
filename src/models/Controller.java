@@ -1,17 +1,22 @@
-package models;
-import models.Biblioteca;
+package src.models;
+import src.models.Biblioteca;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Controller { 
+public class Controller {
     private boolean status;
     private Biblioteca biblioteca;
     private Scanner scanner = new Scanner(System.in);
-    private String separador = "--------------";
+    private String separador = "----------";
+    private void br(){
+        for(int i = 0; i < 5; i++) {
+            System.out.println("");
+        }
+    }
 
-    public Controller(Biblioteca biblioteca){
+    public Controller(Biblioteca biblioteca) {
         setStatus(true);
         setBiblioteca(biblioteca);
     }
@@ -19,124 +24,95 @@ public class Controller {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    public boolean getStatus() { return this.status; }
-
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
-
-    public void getBiblioteca() { 
-        this.biblioteca.getInfo(); 
+    public boolean getStatus() {
+        return this.status;
     }
 
-    public void menuAutor(){
-        br();
-        System.out.println("----- Autores -----");
-        Set<String> autores = this.biblioteca.getAllAutores();
-        int qtd_autores = 0;
-        for(String autor : autores) {
-            qtd_autores++;
-            System.out.println("["+qtd_autores+"] "+autor);
-        }
-
-        System.out.print("Escolha um autor: ");
-        int esc = scanner.nextInt();
-        ArrayList<String> autores_final = new ArrayList<>(autores);
-        this.biblioteca.getByAutor(autores_final.get(esc-1));
-
-        System.out.print("Digite ok para continuar: ");
-        scanner.next();
-
-
-
-
+    public Biblioteca getBiblioteca() {
+        return this.biblioteca;
     }
 
-    public void menuCategorias(){
-        br();
-        System.out.println("----- Categorias -----");
-
-        Set<String> categorias_unicas = this.biblioteca.getAllCategorias();
-
-        int qtd_categorias = 0;
-
-        for(String categoria : categorias_unicas) {
-            qtd_categorias++;
-            System.out.println("["+qtd_categorias+"]"+categoria);
-        }
-
-        System.out.print("Procurar na categoria: ");
-        int esc = scanner.nextInt();
-
-        br();
-
-        ArrayList<String> cat = new ArrayList<>(categorias_unicas);
-        this.biblioteca.getByCategoria(cat.get(esc-1));
-
+    public void fim() {
         System.out.print("Digite ok para continuar: ");
         scanner.next();
     }
+    public void index() {
+        br();
 
-    public void br(){
-        for(int i = 0; i < 5; i++) {
-            System.out.println("");
-            }
-    }
-
-    public void index(){
-         br();
-        System.out.println(separador + this.biblioteca.getNome() + separador);
-        System.out.println("Bem vindo a biblioteca "+this.biblioteca.getNome()+" Escolha a opção que deseja");
         while(status) {
-            
-            System.out.println("\n------ MENU ----------\n[1] Informações sobre a biblioteca \n[2] Livros cadastrados \n[3] Sair\n[4] Buscar por categoria \n[5] Buscar por autor");
+            System.out.println(separador+this.biblioteca.getNome()+separador);
 
+            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor");
 
-            System.out.print("Sua opção: ");
+            System.out.print("Escolha uma opção: ");
             int esc = scanner.nextInt();
-
-
+            br();
             switch(esc) {
-                case 1:
-                    for(int i = 0; i < 5; i++) {
-                    System.out.println("");
-                    }
-                    this.getBiblioteca();
-                    for(int i = 0; i < 5; i++) {
-                    System.out.println("");
-                    }
-                    break;
-                case 2:
-                    for(int i = 0; i < 5; i++) {
-                    System.out.println("");
-                    }
-                    this.biblioteca.getLivros();
-                    for(int i = 0; i < 5; i++) {
-                    System.out.println("");
-                    }
-                    break;
-                case 3:
+                case 0:
                     this.setStatus(false);
                     break;
+                case 1:
+                    this.getBiblioteca().getInfo();
+                    fim();
+                    break;
+
+                case 2:
+                    this.getBiblioteca().getAllLivros();
+                    fim();
+                    break;
+
+                case 3:
+                    this.menuCategoria();
+                    fim();
+                    break;
+
                 case 4:
-                    this.menuCategorias();
-                    break;
-                case 5:
                     this.menuAutor();
-                    break;
-                default:
-                    System.out.println("OPÇÂO INVÁLIDA");
+                    fim();
                     break;
 
             }
-            for(int i = 0; i < 5; i++) {
-                System.out.println("");
-            }
+            br();
         }
-        
+    }
+
+    public void menuCategoria() {
+        br();
+        System.out.println(separador+" CATEGORIAS "+separador);
+        int qtd_categorias = 0;
+
+        for(String categoria : this.getBiblioteca().getCategorias()) {
+            System.out.println("["+qtd_categorias+"] "+categoria);
+            qtd_categorias++;
+        }
+        System.out.print("Selecione uma categoria: ");
+        int categoria = scanner.nextInt();
+        ArrayList<String> array_categorias = new ArrayList<>(this.getBiblioteca().getCategorias());
+
+        br();
+        this.getBiblioteca().getByCategoria(array_categorias.get(categoria));
 
     }
 
-    
+    public void menuAutor() {
+        br();
+
+        System.out.println(separador+" AUTORES "+separador);
+
+        int qtd_autores = 0;
+
+        for(String autor : this.getBiblioteca().getAllAutores()) {
+            System.out.println("["+qtd_autores+"] "+autor);
+            qtd_autores++;
+        }
+
+        System.out.println("Escolha o autor: ");
+        int autor = scanner.nextInt();
+
+        ArrayList<String> autores = new ArrayList<>(this.getBiblioteca().getAllAutores());
+        this.getBiblioteca().getByAutor(autores.get(autor));
+    }
 }
