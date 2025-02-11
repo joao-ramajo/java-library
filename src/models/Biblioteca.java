@@ -1,5 +1,6 @@
 package src.models;
 import src.models.Livro;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,30 +8,27 @@ import java.util.Set;
 public class Biblioteca {
     private String nome;
     private Set<String> categorias = new HashSet<>();
-    private Livro[] livros;
+    private List<Livro> livros = new ArrayList<>();
     private int quantidade_livros;
 
-    public Biblioteca(String nome, Livro[] livros) {
+    public Biblioteca(String nome) {
         this.setNome(nome);
-        this.setLivros(livros);
-        this.setCategorias(livros);
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setLivros(Livro[] livros) {
-        this.livros = livros;
-
-        for(Livro livro : livros) {
-            this.quantidade_livros++;
-        }
+    public void setLivros(Livro livro) {
+        this.livros.add(livro);
     }
 
-    public void setCategorias(Livro[] livros) {
-        for(Livro livro : livros) {
-            categorias.add(livro.getCategoria());
-        }
+    public void setCategorias(Livro livro) {
+        this.categorias.add(livro.getCategoria());
+    }
+
+    public void addLivro(Livro livro) {
+        this.setLivros(livro);
+        this.setCategorias(livro);
     }
 
     public String getNome(){
@@ -41,7 +39,7 @@ public class Biblioteca {
         return this.categorias;
     }
 
-    public Livro[] getLivros() {
+    public List<Livro> getLivros() {
         return this.livros;
     }
 
@@ -98,13 +96,13 @@ public class Biblioteca {
 
     public void getInfo() {
         System.out.println("------------- "+this.getNome()+" -------------");
-        System.out.println("Quantidade de livros cadastrados: " + this.getQuantidadeLivros());
+        System.out.println("Quantidade de livros cadastrados: " + this.getLivros().size());
         System.out.println("Autores cadastrados: " + this.getAllAutores());
     }
 
     public void menuBiblioteca() {
         System.out.println("------------- "+this.getNome()+" -------------");
-        System.out.println("Livros Cadastrados: " + this.getQuantidadeLivros());
+        System.out.println("Livros Cadastrados: " + this.getLivros().size());
         System.out.println("Autores Cadastrados: " + this.getAllAutores().size());
         System.out.println("Categorias: " + this.getCategorias());
     }

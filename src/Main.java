@@ -17,10 +17,13 @@ public class Main {
         Livro livro9 = new Livro("Design de Interfaces Modernas", "UI/UX", "Brasileira", "João Souza", 320);
         Livro livro10 = new Livro("Refatoração", "Engenharia de Software", "Americana", "Martin Fowler", 431);
 
-        Livro[] livros = {livro1,livro2,livro3,livro4,livro5,livro6,livro7,livro8,livro9,livro10};
+        Livro[] livros = {livro1};
 
-        Biblioteca acervo = new Biblioteca("Pública" , livros);
-
+        Biblioteca acervo = new Biblioteca("Pública");
+        for(Livro livro : livros) {
+            acervo.setLivros(livro);
+            acervo.setCategorias(livro);
+        }
         Controller controller = new Controller(acervo);
 
         controller.index();

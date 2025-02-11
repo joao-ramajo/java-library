@@ -1,5 +1,6 @@
 package src.models;
 import src.models.Biblioteca;
+import src.models.Livro;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,12 +46,13 @@ public class Controller {
         while(status) {
             System.out.println(separador+this.biblioteca.getNome()+separador);
 
-            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor");
+            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro");
 
             System.out.print("Escolha uma opção: ");
             int esc = scanner.nextInt();
 
-            while(esc < 0 || esc >= 5){
+
+            while(esc < 0 || esc >= 6){
                 System.out.print("Escolha uma opção válida: ");
                 esc = scanner.nextInt();
             }
@@ -82,6 +84,12 @@ public class Controller {
 
                 case 4:
                     this.menuAutor();
+                    fim();
+                    br();
+                    break;
+
+                case 5:
+                    this.menuAdicionarLivro();
                     fim();
                     br();
                     break;
@@ -134,5 +142,78 @@ public class Controller {
 
         ArrayList<String> autores = new ArrayList<>(this.getBiblioteca().getAllAutores());
         this.getBiblioteca().getByAutor(autores.get(autor));
+    }
+
+    public void menuAdicionarLivro(){
+
+
+        System.out.println(separador+" Adicionar Livro "+separador);
+        System.out.println("======= Exemplo =======");
+        System.out.println("Titulo: Clean Code");
+        System.out.println("Categoria: Programação");
+        System.out.println("Editora: Brasileira");
+        System.out.println("Autor: Carlos Azevedo");
+        System.out.println("========================");
+
+        String titulo;
+
+        System.out.print("Titulo: ");
+        do {
+            titulo = scanner.nextLine();
+        }while(titulo.isEmpty());
+
+
+        String categoria;
+        System.out.print("Categoria: ");
+        do{
+            categoria = scanner.nextLine();
+        }while(categoria.isEmpty());
+
+
+
+        System.out.print("Editora: ");
+        String editora;
+        do{
+            editora = scanner.nextLine();
+        }while(editora.isEmpty());
+
+
+
+
+        System.out.print("Autor: ");
+        String autor;
+        do{
+            autor = scanner.nextLine();
+        }while(autor.isEmpty());
+
+
+        System.out.print("Quantidade de paginas: ");
+        int paginas;
+        do{
+            paginas = scanner.nextInt();
+        }while(paginas < 0);
+
+
+
+
+        System.out.println(separador+" Verifique os dados "+separador);
+        Livro novo_livro = new Livro(titulo, categoria, editora, autor, paginas);
+//
+        novo_livro.getInfo();
+
+        System.out.println("[0] As informações estão corretas");
+        System.out.println("[1] As informações não estão corretas");
+        System.out.print("Selecione uma opção: ");
+        int input = scanner.nextInt();
+
+        switch(input) {
+            case 0:
+                this.getBiblioteca().addLivro(novo_livro);
+                return;
+            case 1:
+                return;
+            default:
+                return;
+        }
     }
 }
