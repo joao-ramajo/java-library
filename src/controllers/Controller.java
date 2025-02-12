@@ -1,24 +1,24 @@
-package src.models;
+package src.controllers;
 import src.models.Biblioteca;
 import src.models.Livro;
+import src.controllers.UserController;
+import src.models.User;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 import java.io.FileWriter;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Controller {
     private boolean status;
     private Biblioteca biblioteca;
     private Scanner scanner = new Scanner(System.in);
     private String separador = "----------";
+    private UserController userController = new UserController();
     private void br(){
         for(int i = 0; i < 5; i++) {
             System.out.println("");
@@ -26,8 +26,9 @@ public class Controller {
     }
 
     public Controller(Biblioteca biblioteca) {
-        setStatus(true);
-        setBiblioteca(biblioteca);
+        this.setStatus(true);
+        this.setBiblioteca(biblioteca);
+        this.injectData();
     }
 
     public void setStatus(boolean status) {
@@ -39,7 +40,6 @@ public class Controller {
     public boolean getStatus() {
         return this.status;
     }
-
     public Biblioteca getBiblioteca() {
         return this.biblioteca;
     }
@@ -50,17 +50,16 @@ public class Controller {
     }
     public void index() {
         br();
-
         while(status) {
             System.out.println(separador+this.biblioteca.getNome()+separador);
 
-            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros");
+            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros \n[7] Menu do usuario");
 
             System.out.print("Escolha uma opção: ");
             int esc = scanner.nextInt();
 
 
-            while(esc < 0 || esc >= 7){
+            while(esc < 0 || esc >= 8){
                 System.out.print("Escolha uma opção válida: ");
                 esc = scanner.nextInt();
             }
@@ -73,25 +72,43 @@ public class Controller {
                     System.out.println("Documentação: https://github.com/LacamJC/Bookshelf_with_java");
                     break;
                 case 1:
-                    this.getBiblioteca().menuBiblioteca();
+                    this.getBiblioteca().infoBiblioteca();
+                    System.out.println("Usuarios cadastrados: "+this.userController.getUsuarios().size());
                     fim();
                     br();
                     break;
 
                 case 2:
-                    this.getBiblioteca().getAllLivros();
+//                    this.getBiblioteca().hasEmpty();
+//                    this.getBiblioteca().getAllLivros();
+                    if(this.getBiblioteca().hasEmpty()){
+                        System.out.println("Sem livros para ver");
+                    }else{
+                        this.getBiblioteca().getAllLivros();
+                    }
                     fim();
                     br();
                     break;
 
                 case 3:
-                    this.menuCategoria();
+                    if(this.getBiblioteca().hasEmpty())
+                    {
+                        System.out.println("Sem livros para ver");
+                    }else {
+                        this.menuCategoria();
+                    }
+
                     fim();
                     br();
                     break;
 
                 case 4:
-                    this.menuAutor();
+                    if(this.getBiblioteca().hasEmpty())
+                    {
+                        System.out.println("Sem livros para ver");
+                    }else {
+                        this.menuAutor();
+                    }
                     fim();
                     br();
                     break;
@@ -109,6 +126,13 @@ public class Controller {
                     br();
                     break;
 
+                case 7:
+                    this.userController.index();
+                    break;
+
+
+
+
             }
 
         }
@@ -125,15 +149,15 @@ public class Controller {
         }
         System.out.print("Selecione uma categoria: ");
         int categoria = scanner.nextInt();
-        while(categoria < 0 || categoria >= 6){
+        while(categoria < 0 || categoria >= qtd_categorias){
             System.out.print("Selecione uma opção válida: ");
             categoria = scanner.nextInt();
         }
-        ArrayList<String> array_categorias = new ArrayList<>(this.getBiblioteca().getCategorias());
+        List<String> array_categorias = new ArrayList<>(this.getBiblioteca().getCategorias());
 
         br();
+//        this.getBiblioteca().getByCategoria(array_categorias.get(categoria));
         this.getBiblioteca().getByCategoria(array_categorias.get(categoria));
-
     }
 
     public void menuAutor() {
@@ -224,6 +248,7 @@ public class Controller {
         switch(input) {
             case 0:
                 this.getBiblioteca().addLivro(novo_livro, this.getBiblioteca().getNome());
+                this.getJsonAllLivros();
                 return;
             case 1:
                 return;
@@ -234,7 +259,6 @@ public class Controller {
 
     public void getJsonAllLivros() {
         List<Livro> livros = new ArrayList<>();
-
         for(Livro livro : this.getBiblioteca().getLivros()) {
             livros.add(livro);
         }
@@ -242,7 +266,7 @@ public class Controller {
         Gson gson = new Gson();
 
         try{
-            FileWriter writer = new FileWriter("livrosAll.json");
+            FileWriter writer = new FileWriter("src/database/livros.json");
             gson.toJson(livros, writer);
             writer.close();
         } catch (IOException e) {
@@ -253,15 +277,29 @@ public class Controller {
     public void injectData(){
         Gson gson = new Gson();
         try{
-            FileReader reader = new FileReader("src/models/data.json");
+            FileReader reader = new FileReader("src/database/livros.json");
             Livro[] livros_json = gson.fromJson(reader, Livro[].class);
 
-            for(Livro livro : livros_json) {
-                this.getBiblioteca().setLivros(livro);
+            if(livros_json.length >= 1 ) {
+                System.out.println("Existe pelo menos um livro aqui");
+                for(Livro livro : livros_json) {
+                    this.getBiblioteca().setLivros(livro);
+                }
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+//        try{
+//            FileReader reader = new FileReader("src/database/users.json");
+//            Livro[] livros_json = gson.fromJson(reader, Livro[].class);
+//
+//            for(Livro livro : livros_json) {
+//                this.getBiblioteca().setLivros(livro);
+//            }
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
 
     }
 }

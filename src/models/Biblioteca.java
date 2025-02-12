@@ -18,8 +18,10 @@ public class Biblioteca {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public void setLivros(Livro livro) {
         this.livros.add(livro);
+        this.setCategorias(livro);
     }
 
     public void setCategorias(Livro livro) {
@@ -74,6 +76,10 @@ public class Biblioteca {
         for (Livro livro : this.getLivros()) {
             info(livro);
         }
+
+        if(this.getLivros().isEmpty()) {
+            System.out.println("Sem livros cadastrados no sistema");
+        }
     }
 
     public Set<String> getAllAutores() {
@@ -102,11 +108,22 @@ public class Biblioteca {
         System.out.println("Autores cadastrados: " + this.getAllAutores());
     }
 
-    public void menuBiblioteca() {
+    public void infoBiblioteca() {
         System.out.println("------------- "+this.getNome()+" -------------");
         System.out.println("Livros Cadastrados: " + this.getLivros().size());
         System.out.println("Autores Cadastrados: " + this.getAllAutores().size());
         System.out.println("Categorias: " + this.getCategorias());
+    }
+
+
+    public boolean hasEmpty(){
+
+        if(this.getLivros().isEmpty()){
+            System.out.println("Biblioteca vazia");
+        }
+
+        return this.getLivros().isEmpty();
+
     }
 
 
