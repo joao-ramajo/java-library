@@ -1,4 +1,5 @@
 package src.controllers;
+import src.factories.LivroFactory;
 import src.models.Biblioteca;
 import src.models.Livro;
 import src.controllers.UserController;
@@ -20,6 +21,7 @@ public class Controller {
     private Scanner scanner = new Scanner(System.in);
     private String separador = "----------";
     private UserController userController = new UserController();
+    private LivroFactory livroFactory = new LivroFactory();
     private void br(){
         for(int i = 0; i < 5; i++) {
             System.out.println("");
@@ -55,7 +57,7 @@ public class Controller {
             System.out.println(separador+this.biblioteca.getNome()+separador);
 
 //            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros \n[7] Menu do usuario");
-            String[] opcoes = {"[0] Sair ","[1] Informações sobre a biblioteca ","[2] Livros Cadastrados ","[3] Buscar por Categoria ","[4] Buscar por autor ","[5] Adicionar Livro ","[6] gerar .JSON de todos os livros ","[7] Menu do usuario"};
+            String[] opcoes = {"[0] Sair ","[1] Informações sobre a biblioteca ","[2] Livros Cadastrados ","[3] Buscar por Categoria ","[4] Buscar por autor ","[5] Adicionar Livro ","[6] gerar .JSON de todos os livros ","[7] Menu do usuario", "[8] Gerar Factory"};
             for(String opcao : opcoes) {
                 System.out.println(opcao);
             }
@@ -142,6 +144,14 @@ public class Controller {
                     System.out.println("===== Função em desenvolvimento =====");
                     fim();
                     br();
+                    break;
+
+                case 8:
+                    System.out.println("------ Gerando Factory Livros -------");
+                    Livro[] livros = this.livroFactory.data();
+                    for(Livro livro : livros){
+                        this.getBiblioteca().addLivro(livro, this.getBiblioteca().getNome());
+                    }
                     break;
 
             }
