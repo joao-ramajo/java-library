@@ -6,6 +6,7 @@ import src.models.User;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -53,16 +54,29 @@ public class Controller {
         while(status) {
             System.out.println(separador+this.biblioteca.getNome()+separador);
 
-            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros \n[7] Menu do usuario");
-
-            System.out.print("Escolha uma opção: ");
-            int esc = scanner.nextInt();
-
-
-            while(esc < 0 || esc >= 8){
-                System.out.print("Escolha uma opção válida: ");
-                esc = scanner.nextInt();
+//            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros \n[7] Menu do usuario");
+            String[] opcoes = {"[0] Sair ","[1] Informações sobre a biblioteca ","[2] Livros Cadastrados ","[3] Buscar por Categoria ","[4] Buscar por autor ","[5] Adicionar Livro ","[6] gerar .JSON de todos os livros ","[7] Menu do usuario"};
+            for(String opcao : opcoes) {
+                System.out.println(opcao);
             }
+            int esc;
+
+            do{
+                System.out.print("Escolha uma opção: ");
+                try {
+                    esc = scanner.nextInt();
+                    while(esc < 0 || esc >= opcoes.length){
+                        System.out.print("Escolha uma opção válida: ");
+                        esc = scanner.nextInt();
+                    }
+                    break;
+                } catch(InputMismatchException e) {
+                    System.out.println("Entrada inválida, digite um valor válido");
+                    scanner.nextLine();
+                }
+            }while(true);
+
+
 
             br();
             switch(esc) {
@@ -79,8 +93,6 @@ public class Controller {
                     break;
 
                 case 2:
-//                    this.getBiblioteca().hasEmpty();
-//                    this.getBiblioteca().getAllLivros();
                     if(this.getBiblioteca().hasEmpty()){
                         System.out.println("Sem livros para ver");
                     }else{
@@ -127,11 +139,10 @@ public class Controller {
                     break;
 
                 case 7:
-                    this.userController.index();
+                    System.out.println("===== Função em desenvolvimento =====");
+                    fim();
+                    br();
                     break;
-
-
-
 
             }
 
@@ -148,16 +159,50 @@ public class Controller {
             qtd_categorias++;
         }
         System.out.print("Selecione uma categoria: ");
-        int categoria = scanner.nextInt();
-        while(categoria < 0 || categoria >= qtd_categorias){
-            System.out.print("Selecione uma opção válida: ");
-            categoria = scanner.nextInt();
-        }
+//        int categoria = scanner.nextInt();
+//        while(categoria < 0 || categoria >= qtd_categorias){
+//            System.out.print("Selecione uma opção válida: ");
+//            categoria = scanner.nextInt();
+//        }
+        int esc;
+        do{
+            System.out.println("Selecione uma categoria: ");
+            try {
+                esc = scanner.nextInt();
+                while(esc < 0 || esc >= qtd_categorias) {
+                    System.out.println("Escolha uma opção válida");
+                    esc = scanner.nextInt();
+                }
+                break;
+            } catch(InputMismatchException e) {
+                System.out.println("Entrada inválida, digite um valor válido");
+                scanner.nextLine();
+            }
+        }while(true);
+
+//        do{
+//            System.out.print("Escolha uma opção: ");
+//            try {
+//                esc = scanner.nextInt();
+//                while(esc < 0 || esc >= opcoes.length){
+//                    System.out.print("Escolha uma opção válida: ");
+//                    esc = scanner.nextInt();
+//                }
+//                break;
+//            } catch(InputMismatchException e) {
+//                System.out.println("Entrada inválida, digite um valor válido");
+//                scanner.nextLine();
+//            }
+//        }while(true);
+
+
+
+
         List<String> array_categorias = new ArrayList<>(this.getBiblioteca().getCategorias());
 
         br();
 //        this.getBiblioteca().getByCategoria(array_categorias.get(categoria));
-        this.getBiblioteca().getByCategoria(array_categorias.get(categoria));
+        this.getBiblioteca().getByCategoria(array_categorias.get(esc));
     }
 
     public void menuAutor() {
