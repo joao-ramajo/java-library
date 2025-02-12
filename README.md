@@ -2,24 +2,7 @@
 
 Projeto em **Java** para a criação de um sistema de gerenciamento de bibliotecas.
 
-## 📂 Estrutura do Projeto
-```plaintext 
-   lacamjc-bookshelf_with_java/
-   ├── README.md
-   ├── META-INF/
-   │   └── MANIFEST.MF
-   └── src/
-   ├── Main.java
-   ├── models/
-   │   ├── Biblioteca.java
-   │   ├── Controller.java
-   │   └── Livro.java
-   ├── README.md
-   ├── livrosAll.json
-   ├── .gitignore
-   └── META-INF/
-   └── MANIFEST.MF
-```
+
 
 
 ## 🚀 O que é este projeto?
