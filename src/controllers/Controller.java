@@ -55,7 +55,7 @@ public class Controller {
         br();
         while(status) {
             System.out.println(separador+this.biblioteca.getNome()+separador);
-            System.out.println("TESTE");
+
 
 //            System.out.println("[0] Sair\n[1] Informações sobre a biblioteca \n[2] Livros Cadastrados \n[3] Buscar por Categoria \n[4] Buscar por autor \n[5] Adicionar Livro \n[6] gerar .JSON de todos os livros \n[7] Menu do usuario");
             String[] opcoes = {"[0] Sair ","[1] Informações sobre a biblioteca ","[2] Livros Cadastrados ","[3] Buscar por Categoria ","[4] Buscar por autor ","[5] Adicionar Livro ","[6] gerar .JSON de todos os livros ","[7] Menu do usuario", "[8] Gerar Factory"};
