@@ -238,6 +238,15 @@ public class Controller {
         this.getBiblioteca().getByAutor(autores.get(autor));
     }
 
+    public void backToMenu(String string, int number){
+        if(string.equalsIgnoreCase("0")){
+            this.index();
+        }
+        if(number == 0){
+            this.index();
+        }
+    }
+
     public void menuAdicionarLivro(){
 
 
@@ -247,13 +256,18 @@ public class Controller {
         System.out.println("Categoria: Programação");
         System.out.println("Editora: Brasileira");
         System.out.println("Autor: Carlos Azevedo");
+        System.out.println("Coloque 0 para voltar ao menu");
         System.out.println("========================");
 
         String titulo;
 
+
+
         System.out.print("Titulo: ");
         do {
             titulo = scanner.nextLine();
+            this.backToMenu(titulo, 1);
+
         }while(titulo.isEmpty());
 
 
@@ -261,6 +275,7 @@ public class Controller {
         System.out.print("Categoria: ");
         do{
             categoria = scanner.nextLine();
+            this.backToMenu(categoria, 1);
         }while(categoria.isEmpty());
 
 
@@ -269,6 +284,7 @@ public class Controller {
         String editora;
         do{
             editora = scanner.nextLine();
+            this.backToMenu(editora, 1);
         }while(editora.isEmpty());
 
 
@@ -278,6 +294,7 @@ public class Controller {
         String autor;
         do{
             autor = scanner.nextLine();
+            this.backToMenu(autor, 1);
         }while(autor.isEmpty());
 
 
@@ -285,6 +302,7 @@ public class Controller {
         int paginas;
         do{
             paginas = scanner.nextInt();
+            this.backToMenu("", paginas);
         }while(paginas < 0);
 
 

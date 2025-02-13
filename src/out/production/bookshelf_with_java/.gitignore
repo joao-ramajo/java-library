@@ -1,0 +1,45 @@
+# Compilação e builds
+/bin/
+*/bin/
+*/build/
+*/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Dependências do Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+target/
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Dependências do Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+
+# Arquivos do IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+META-INF/
+
+# Arquivos do Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# Arquivos do NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
