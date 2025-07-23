@@ -40,10 +40,5 @@ Este é um sistema básico para gerenciar livros em uma biblioteca. Ele permite 
 - 🖊️ Buscar livros por **autor**
 - 📊 Exibir estatísticas gerais da biblioteca
 
-## 📜 Licença
-Este projeto está sob a licença **MIT**. Você pode usá-lo, modificá-lo e distribuí-lo livremente.
 
----
-
-Feito por [LacamJC](https://github.com/LacamJC) 
 
