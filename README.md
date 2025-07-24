@@ -1,16 +1,16 @@
-﻿# 📚 Bookshelf_with_java
+﻿#  Bookshelf_with_java
 
 Projeto em **Java** para a criação de um sistema de gerenciamento de bibliotecas.
 
 
 
 
-## 🚀 O que é este projeto?
+##  O que é este projeto?
 
 Este é um sistema básico para gerenciar livros em uma biblioteca. Ele permite visualizar informações sobre os livros cadastrados, filtrá-los por categoria ou autor e exibir estatísticas da biblioteca.
 
 
-## 🛠️ Como usar para alterações
+##  Como usar para alterações
 
 ### Pré-requisitos:
 - Java instalado (JDK 8 ou superior)
@@ -34,11 +34,10 @@ Este é um sistema básico para gerenciar livros em uma biblioteca. Ele permite 
    java -cp bin Main
    ```
 
-## ✨ Funcionalidades
-- 📖 Cadastrar e visualizar livros na biblioteca
-- 🔍 Filtrar livros por **categoria**
-- 🖊️ Buscar livros por **autor**
-- 📊 Exibir estatísticas gerais da biblioteca
-
+## Funcionalidades
+-  Cadastrar e visualizar livros na biblioteca
+-  Filtrar livros por **categoria**
+-  Buscar livros por **autor**
+-  Exibir estatísticas gerais da biblioteca
 
 
